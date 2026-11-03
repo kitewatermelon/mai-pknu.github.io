@@ -373,7 +373,7 @@ img { max-width: 100%; display: block; }
 .faculty__legend { margin-top: 14px; font-size: .78rem; color: var(--muted); }
 
 .grant-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
-.grant-list li { padding: 16px 20px; border-radius: var(--radius); background: var(--bg-soft); border-left: 3px solid var(--accent); }
+.grant-list li { padding: 16px 20px; background: var(--white); border: 1px solid var(--dark); }
 .grant__title { display: block; color: var(--dark); font-size: .98rem; }
 .grant__meta { display: block; margin-top: 2px; font-family: var(--font-en); font-size: .78rem; font-weight: 600; color: var(--accent); }
 .grant__desc { margin-top: 6px; font-size: .9rem; color: var(--text); word-break: keep-all; }
