@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="Roboto Slab, Malgun Gothic, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f4f7fb"/><stop offset="1" stop-color="#e3eef8"/>
+    </linearGradient>
+    <radialGradient id="scan" cx=".5" cy=".5" r=".6">
+      <stop offset="0" stop-color="#3a4656"/><stop offset="1" stop-color="#0b1a2c"/>
+    </radialGradient>
+    <marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0 10 5 0 10z" fill="#19a7ce"/>
+    </marker>
+  </defs>
+  <rect width="800" height="450" fill="url(#bg)"/>
+
+  <!-- 1. 입력 영상 (MRI slice) -->
+  <rect x="40" y="70" width="210" height="270" rx="14" fill="url(#scan)"/>
+  <g transform="translate(145 200)">
+    <ellipse rx="78" ry="98" fill="#8a96a6"/>
+    <ellipse rx="66" ry="86" fill="#b9c3cf"/>
+    <path d="M0-86V86" stroke="#6f7b8b" stroke-width="3"/>
+    <path d="M-50-40c14 8 26 2 34 14M50-40c-14 8-26 2-34 14M-54 10c16 4 22 18 36 18M54 10c-16 4-22 18-36 18M-38 54c12-6 22 0 30-8M38 54c-12-6-22 0-30-8" fill="none" stroke="#7c8899" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M-16-10c4-12 10-14 16-14s12 2 16 14c-6 10-10 12-16 12s-10-2-16-12z" fill="#5d6878"/>
+  </g>
+  <text x="145" y="368" font-size="14" font-weight="700" fill="#0b1a2c" text-anchor="middle">Medical Image</text>
+  <text x="145" y="388" font-size="12" fill="#6b7684" text-anchor="middle">MRI · CT · X-ray · Fundus</text>
+
+  <path d="M262 205H310" fill="none" stroke="#19a7ce" stroke-width="3" stroke-dasharray="7 6" marker-end="url(#ar)"/>
+
+  <!-- 2. Segmentation -->
+  <rect x="320" y="70" width="210" height="270" rx="14" fill="url(#scan)"/>
+  <g transform="translate(425 200)">
+    <ellipse rx="78" ry="98" fill="#8a96a6"/>
+    <ellipse rx="66" ry="86" fill="#b9c3cf"/>
+    <path d="M0-86V86" stroke="#6f7b8b" stroke-width="3"/>
+    <path d="M-60-30c10-30 40-50 56-50v60c-20 0-38 4-56-10z" fill="#19a7ce" fill-opacity=".55" stroke="#19a7ce" stroke-width="2"/>
+    <path d="M60-30c-10-30-40-50-56-50v60c20 0 38 4 56-10z" fill="#1d5fa8" fill-opacity=".55" stroke="#1d5fa8" stroke-width="2"/>
+    <path d="M-16-10c4-12 10-14 16-14s12 2 16 14c-6 10-10 12-16 12s-10-2-16-12z" fill="#ffd166" fill-opacity=".85" stroke="#f2b632" stroke-width="2"/>
+    <rect x="18" y="22" width="40" height="34" rx="3" fill="none" stroke="#e0566b" stroke-width="2.5" stroke-dasharray="5 3"/>
+  </g>
+  <text x="425" y="368" font-size="14" font-weight="700" fill="#0b1a2c" text-anchor="middle">Segmentation</text>
+  <text x="425" y="388" font-size="12" fill="#6b7684" text-anchor="middle">Region · Lesion detection</text>
+
+  <path d="M542 205H590" fill="none" stroke="#19a7ce" stroke-width="3" stroke-dasharray="7 6" marker-end="url(#ar)"/>
+
+  <!-- 3. Brain network -->
+  <rect x="600" y="70" width="160" height="270" rx="14" fill="#fff" stroke="#d5deea"/>
+  <g stroke="#19a7ce" stroke-opacity=".7" stroke-width="2">
+    <path d="M640 120 700 110M640 120 660 175M700 110 725 165M660 175 725 165M660 175 640 235M725 165 720 230M640 235 720 230M640 235 680 290M720 230 680 290M700 110 660 175M640 120 725 165"/>
+  </g>
+  <g fill="#0f3d73">
+    <circle cx="640" cy="120" r="8"/><circle cx="700" cy="110" r="10"/><circle cx="660" cy="175" r="12"/>
+    <circle cx="725" cy="165" r="7"/><circle cx="640" cy="235" r="9"/><circle cx="720" cy="230" r="11"/><circle cx="680" cy="290" r="8"/>
+  </g>
+  <circle cx="660" cy="175" r="12" fill="#ffd166"/>
+  <text x="680" y="368" font-size="14" font-weight="700" fill="#0b1a2c" text-anchor="middle">Brain Network</text>
+  <text x="680" y="388" font-size="12" fill="#6b7684" text-anchor="middle">Connectivity analysis</text>
+</svg>

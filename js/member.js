@@ -37,12 +37,10 @@
 
   /* ---------- 카드 ---------- */
   function cardHTML(m) {
-    const pubN = count(m.journals) + count(m.conferences);
     return `
-      <article class="m-card reveal" tabindex="0" data-id="${esc(m.id)}" aria-label="${esc(m.nameEn)} 상세 보기">
+      <article class="m-card" tabindex="0" data-id="${esc(m.id)}" aria-label="${esc(m.nameEn)} 상세 보기">
         <div class="m-card__photo">
           ${photoHTML(m, "m-card__img")}
-          <span class="m-card__more">View Profile</span>
         </div>
         <div class="m-card__body">
           <span class="m-card__position">${esc(m.position)}</span>
@@ -53,7 +51,6 @@
           <div class="m-card__foot">
             ${m.email && m.email[0]
               ? `<a class="m-card__mail" href="mailto:${esc(m.email[0])}" onclick="event.stopPropagation()">✉ ${esc(m.email[0])}</a>` : "<span></span>"}
-            ${pubN ? `<span class="m-card__pubs">${pubN} Pubs</span>` : ""}
           </div>
         </div>
       </article>`;
@@ -70,8 +67,6 @@
           <div class="m-group" id="${g.key}">
             <div class="m-group__head">
               <h2 class="m-group__title">${esc(g.title)}</h2>
-              <span class="m-group__ko">${esc(g.ko)}</span>
-              <span class="m-group__count">${ms.length}</span>
             </div>
             <div class="m-grid">${ms.map(cardHTML).join("")}</div>
           </div>`;
@@ -84,19 +79,14 @@
         if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openModal(card.dataset.id); }
       });
     });
-    // 새로 그린 카드도 등장 애니메이션
-    requestAnimationFrame(() => list.querySelectorAll(".reveal").forEach((el, i) => {
-      el.style.transitionDelay = `${(i % 4) * 0.08}s`;
-      el.classList.add("is-visible");
-    }));
   }
 
   function renderTabs() {
     const groups = MEMBER_GROUPS.filter((g) => MEMBERS.some((m) => m.group === g.key));
     tabs.innerHTML =
-      `<li><button class="is-active" data-filter="all">All <span>${MEMBERS.length}</span></button></li>` +
+      `<li><button class="is-active" data-filter="all">All</button></li>` +
       groups.map((g) =>
-        `<li><button data-filter="${g.key}">${esc(g.title)} <span>${MEMBERS.filter((m) => m.group === g.key).length}</span></button></li>`
+        `<li><button data-filter="${g.key}">${esc(g.title)}</button></li>`
       ).join("");
     tabs.querySelectorAll("button").forEach((b) =>
       b.addEventListener("click", () => {

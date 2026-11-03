@@ -143,7 +143,8 @@ function initReveal() {
         }
       });
     },
-    { threshold: 0.15 }
+    // 비율(threshold) 대신 여백 기준: 화면보다 긴 요소(교수 카드 등)도 윗부분이 보이면 바로 나타남
+    { threshold: 0, rootMargin: "0px 0px -60px 0px" }
   );
   els.forEach((el, i) => {
     if (el.classList.contains("card")) el.style.transitionDelay = `${(i % 3) * 0.12}s`;
