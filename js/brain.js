@@ -18,11 +18,11 @@
     bgCount: 70,           // 배경에 떠다니는 입자
     neighbors: 3,          // 각 뉴런이 연결되는 이웃 수
     maxLinkDist: 0.32,     // 연결 최대 거리 (정규화 좌표)
-    pulseRate: 0.9,        // 프레임당 새 신호 발생 확률 계수
+    pulseRate: 0.25,       // 프레임당 새 신호 발생 확률 계수
     rotateSpeed: 0.0022,   // 회전 속도
-    colorNode: [120, 210, 255],
-    colorLink: [70, 160, 230],
-    colorPulse: [140, 245, 255],
+    colorNode: [11, 26, 44],
+    colorLink: [150, 158, 168],
+    colorPulse: [25, 167, 206],
   };
 
   let W, H, DPR, cx, cy, scale;
@@ -124,7 +124,7 @@
     const li = opts[(Math.random() * opts.length) | 0];
     const l = links[li];
     const to = l.a === fromNode ? l.b : l.a;
-    pulses.push({ from: fromNode, to, t: 0, speed: 0.018 + Math.random() * 0.025, hops: depthLeft });
+    pulses.push({ from: fromNode, to, t: 0, speed: 0.01 + Math.random() * 0.012, hops: depthLeft });
   }
 
   /* ---------- 투영 ---------- */
@@ -160,14 +160,14 @@
       s.x += s.vx; s.y += s.vy;
       if (s.x < 0) s.x = W; if (s.x > W) s.x = 0;
       if (s.y < 0) s.y = H; if (s.y > H) s.y = 0;
-      ctx.fillStyle = `rgba(150,200,255,${s.a})`;
+      ctx.fillStyle = `rgba(11,26,44,${s.a * 0.35})`;
       ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2); ctx.fill();
     }
 
     // 뇌 주변 은은한 빛
     const halo = ctx.createRadialGradient(cx, cy, scale * 0.1, cx, cy, scale * 1.3);
-    halo.addColorStop(0, "rgba(40,140,230,0.16)");
-    halo.addColorStop(1, "rgba(40,140,230,0)");
+    halo.addColorStop(0, "rgba(11,26,44,0.04)");
+    halo.addColorStop(1, "rgba(11,26,44,0)");
     ctx.fillStyle = halo;
     ctx.fillRect(0, 0, W, H);
 
@@ -189,8 +189,8 @@
       const a = 0.25 + n.depth * 0.65 + n.glow * 0.5;
       if (n.glow > 0.05) {
         const g = ctx.createRadialGradient(n.sx, n.sy, 0, n.sx, n.sy, r * 5);
-        g.addColorStop(0, `rgba(160,240,255,${0.5 * n.glow})`);
-        g.addColorStop(1, "rgba(160,240,255,0)");
+        g.addColorStop(0, `rgba(25,167,206,${0.5 * n.glow})`);
+        g.addColorStop(1, "rgba(25,167,206,0)");
         ctx.fillStyle = g;
         ctx.beginPath(); ctx.arc(n.sx, n.sy, r * 5, 0, Math.PI * 2); ctx.fill();
       }
@@ -204,14 +204,14 @@
       for (const n of nodes) {
         const d = Math.hypot(n.sx - mouse.x, n.sy - mouse.y);
         if (d < R) {
-          ctx.strokeStyle = `rgba(150,235,255,${(1 - d / R) * 0.55})`;
+          ctx.strokeStyle = `rgba(11,26,44,${(1 - d / R) * 0.3})`;
           ctx.lineWidth = 0.8;
           ctx.beginPath(); ctx.moveTo(mouse.x, mouse.y); ctx.lineTo(n.sx, n.sy); ctx.stroke();
         }
       }
       const cg = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 40);
-      cg.addColorStop(0, "rgba(160,240,255,0.35)");
-      cg.addColorStop(1, "rgba(160,240,255,0)");
+      cg.addColorStop(0, "rgba(25,167,206,0.35)");
+      cg.addColorStop(1, "rgba(25,167,206,0)");
       ctx.fillStyle = cg;
       ctx.beginPath(); ctx.arc(mouse.x, mouse.y, 40, 0, Math.PI * 2); ctx.fill();
     }
@@ -221,14 +221,13 @@
       const r = ripples[i];
       r.r += 6; r.a *= 0.94;
       if (r.a < 0.02) { ripples.splice(i, 1); continue; }
-      ctx.strokeStyle = `rgba(140,240,255,${r.a})`;
+      ctx.strokeStyle = `rgba(25,167,206,${r.a})`;
       ctx.lineWidth = 2;
       if (r.r > 0) { ctx.beginPath(); ctx.arc(r.x, r.y, r.r, 0, Math.PI * 2); ctx.stroke(); }
     }
 
     // 신호 펄스
     const [pr, pg, pb] = CFG.colorPulse;
-    ctx.globalCompositeOperation = "lighter";
     for (let i = pulses.length - 1; i >= 0; i--) {
       const p = pulses[i];
       p.t += p.speed;
@@ -237,7 +236,7 @@
         b.glow = Math.min(1, b.glow + 0.8);
         if (p.hops > 0) {
           spawnPulse(p.to, p.hops - 1);
-          if (Math.random() < 0.25) spawnPulse(p.to, p.hops - 1); // 가끔 분기
+          if (Math.random() < 0.08) spawnPulse(p.to, p.hops - 1); // 가끔 분기
         }
         pulses.splice(i, 1);
         continue;
@@ -257,7 +256,6 @@
       ctx.fillStyle = `rgba(${pr},${pg},${pb},${0.6 + d * 0.4})`;
       ctx.beginPath(); ctx.arc(x, y, 1.3 + d * 1.2, 0, Math.PI * 2); ctx.fill();
     }
-    ctx.globalCompositeOperation = "source-over";
   }
 
   function tick() {
@@ -268,8 +266,8 @@
     yawOffset += (yawTarget - yawOffset) * 0.04;
 
     // 새 신호 발생 (최대 개수 제한)
-    if (pulses.length < 140 && Math.random() < CFG.pulseRate) {
-      spawnPulse((Math.random() * nodes.length) | 0, 4 + ((Math.random() * 5) | 0));
+    if (pulses.length < 35 && Math.random() < CFG.pulseRate) {
+      spawnPulse((Math.random() * nodes.length) | 0, 2 + ((Math.random() * 3) | 0));
     }
     project();
     draw();
@@ -293,7 +291,7 @@
       const d = Math.hypot(n.sx - mouse.x, n.sy - mouse.y);
       if (d < 150) {
         n.glow = Math.max(n.glow, (1 - d / 150) * 0.9);
-        if (Math.random() < 0.004 && pulses.length < 220) spawnPulse(i, 3);
+        if (Math.random() < 0.001 && pulses.length < 60) spawnPulse(i, 3);
       }
     }
   }
@@ -305,7 +303,7 @@
       const d = Math.hypot(n.sx - x, n.sy - y);
       if (d < 200) {
         n.glow = 1;
-        if (Math.random() < 0.35) spawnPulse(i, 8);
+        if (Math.random() < 0.15) spawnPulse(i, 4);
       }
     });
     spin += 0.04; // 클릭하면 뇌가 한 번 휙 돎
