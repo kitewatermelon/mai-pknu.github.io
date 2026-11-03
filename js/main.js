@@ -21,7 +21,8 @@ document.addEventListener("DOMContentLoaded", () => {
   initSlider();
   initReveal();
   initToTop();
-  document.getElementById("year").textContent = new Date().getFullYear();
+  const year = document.getElementById("year");
+  if (year) year.textContent = new Date().getFullYear();
 });
 
 /* ---------- 이미지 로딩 (실패 시 그라데이션 대체) ---------- */
@@ -79,6 +80,7 @@ function initMobileMenu() {
 function initSlider() {
   const slides = [...document.querySelectorAll(".hero__slide")];
   const dotsWrap = document.getElementById("heroDots");
+  if (!slides.length || !dotsWrap) return; // 슬라이더가 없는 페이지
   const INTERVAL = 6000;
   let current = 0;
   let timer;

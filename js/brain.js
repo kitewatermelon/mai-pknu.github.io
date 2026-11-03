@@ -111,6 +111,14 @@
     ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
 
     const mobile = W < 860;
+    if (canvas.parentElement.classList.contains("page-banner")) {
+      // 서브 페이지 배너: 오른쪽에 작게
+      cx = mobile ? W * 0.78 : W * 0.75;
+      cy = H * 0.56;
+      scale = mobile ? H * 0.3 : H * 0.42;
+      makeBackground();
+      return;
+    }
     cx = mobile ? W * 0.5 : W * 0.68;
     cy = mobile ? H * 0.27 : H * 0.5;
     scale = mobile ? Math.min(W, H) * 0.36 : Math.min(W * 0.3, H * 0.42);
