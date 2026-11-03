@@ -86,6 +86,26 @@ const MEMBERS = [
   },
 
   {
+    id: "jiin-choi",
+    group: "ms",
+    position: "M.S. Student",
+    nameKo: "최지인",
+    nameEn: "Ji-In Choi",
+    citeName: ["Ji-In Choi"],
+    photo: "",   // 사진 추가 시: "images/members/jiin-choi.jpg"
+    department: {
+      ko: "데이터공학과",
+      en: "Department of Data Engineering",
+    },
+    interests: ["Medical Image Segmentation", "Trustworthy AI"],
+    email: ["hanuel001029@office.pknu.ac.kr"],
+    links: {},
+    awards: [],
+    journals: { SCIE: [], Scopus: [] },
+    conferences: { International: [], Domestic: [] },
+  },
+
+  {
     id: "taeyeong-han",
     group: "undergrad",
     position: "Undergraduate Intern",
