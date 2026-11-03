@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Research | Medical AI Lab.</title>
+  <meta name="description" content="Research areas of Medical AI Lab., Pukyong National University" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ================= HEADER ================= -->
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a href="index.html" class="logo">
+        <img class="logo__img" data-img="logo" alt="Medical AI Lab logo" />
+        <span class="logo__text">
+          <strong>Medical AI Lab.</strong>
+          <small>Laboratory of AI on Medical Applications</small>
+        </span>
+      </a>
+
+      <nav class="nav" id="nav">
+        <ul class="nav__list">
+          <li><a href="index.html" class="nav__link">HOME</a></li>
+          <li><a href="research.html" class="nav__link is-active">RESEARCH</a></li>
+          <li class="nav__item--dropdown">
+            <a href="member.html" class="nav__link">MEMBER <span class="caret">▾</span></a>
+            <ul class="dropdown">
+              <li><a href="faculty.html">Faculty</a></li>
+              <li><a href="member.html#current">Current</a></li>
+            </ul>
+          </li>
+          <li><a href="publications.html" class="nav__link">PUBLICATIONS</a></li>
+          <li><a href="contact.html" class="nav__link">CONTACT</a></li>
+        </ul>
+      </nav>
+
+      <button class="hamburger" id="hamburger" aria-label="메뉴 열기">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ================= PAGE BANNER ================= -->
+  <section class="page-banner" id="hero">
+    <canvas class="hero__canvas" id="brainCanvas" aria-hidden="true"></canvas>
+    <div class="hero__overlay"></div>
+    <div class="container page-banner__content">
+      <p class="page-banner__crumb"><a href="index.html">Home</a> <span>/</span> Research</p>
+      <h1 class="page-banner__title">Research</h1>
+      <p class="page-banner__sub">AI for data analysis and clinical decision-making.</p>
+    </div>
+  </section>
+
+  <main>
+    <!-- 연구 목표 -->
+    <section class="section research-intro">
+      <div class="container">
+        <div class="section__header section__header--center reveal">
+          <span class="section__label">OUR GOAL</span>
+          <h2 class="section__title">Virtual Doctor</h2>
+          <p class="section__sub">
+            My research goal is the development of AI framework, <em>"Virtual Doctor"</em>,
+            that supports data analysis and decision-making.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 연구 분야 -->
+    <section class="section research-areas">
+      <div class="container">
+        <article class="research-area reveal" id="neuroimaging-genetics">
+          <figure class="research-area__img">
+            <img src="images/research/neuroimaging-genetics.png" alt="Neuroimaging genetics: linking brain imaging and genetic markers to classify healthy and disease" loading="lazy" />
+          </figure>
+          <div class="research-area__body">
+            <span class="research-area__num">01</span>
+            <h2 class="research-area__title">Neuroimaging Genetics</h2>
+            <p class="research-area__lead">Imaging genetics = Neuroimaging + Genetics information</p>
+            <p>An emerging field that has huge potential to improve understanding of complex neurological conditions.</p>
+            <p>We identify concrete links between morphological or functional changes in the brain and genetic variants linked to disease, discovering biologically meaningful biomarkers.</p>
+            <ul class="research-area__topics">
+              <li>Imaging genetics association &amp; integration analysis</li>
+              <li>Sparse canonical correlation analysis (SCCA)</li>
+              <li>Multi-view non-negative matrix factorization</li>
+              <li>Biomarkers of Parkinson’s &amp; Alzheimer’s disease</li>
+            </ul>
+          </div>
+        </article>
+        <article class="research-area research-area--reverse reveal" id="ml-medical-data">
+          <figure class="research-area__img">
+            <img src="images/research/ml-medical-data.svg" alt="Integrating clinical records, genomics and bio-signals with machine learning" loading="lazy" />
+          </figure>
+          <div class="research-area__body">
+            <span class="research-area__num">02</span>
+            <h2 class="research-area__title">ML for Medical Data</h2>
+            <p class="research-area__lead">Machine learning on heterogeneous healthcare data</p>
+            <p>We apply machine learning, deep learning, data science and statistics to medical data, including data integration analysis that combines multiple data sources.</p>
+            <p>Together with clinicians at Samsung Medical Center and Gachon University Gil Medical Center, we develop AI software that supports clinical decision-making.</p>
+            <ul class="research-area__topics">
+              <li>Multi-source data integration</li>
+              <li>Deep learning-based missing data imputation</li>
+              <li>Fetal state &amp; delivery risk prediction</li>
+              <li>Pathological analysis of Parkinson’s disease</li>
+            </ul>
+          </div>
+        </article>
+        <article class="research-area reveal" id="image-analysis">
+          <figure class="research-area__img">
+            <img src="images/research/image-analysis.svg" alt="Medical image analysis: segmentation and brain network analysis" loading="lazy" />
+          </figure>
+          <div class="research-area__body">
+            <span class="research-area__num">03</span>
+            <h2 class="research-area__title">Medical Image Data Analysis</h2>
+            <p class="research-area__lead">Brain network analysis &amp; AI in medical image processing</p>
+            <p><strong>Brain network analysis</strong> — analyzing neuroimaging data for revealing brain function, structural biomarkers, neural processing, and disease biomarkers.</p>
+            <p><strong>AI in medical image processing</strong> — developing novel AI methods for disease prediction, segmentation, diagnosis, and identifying biomarkers.</p>
+            <ul class="research-area__topics">
+              <li>Brain connectivity &amp; network analysis</li>
+              <li>Segmentation &amp; disease diagnosis</li>
+              <li>Medical image synthesis (e.g. CBCT-to-CT)</li>
+              <li>Medical foundation models &amp; generative AI</li>
+            </ul>
+          </div>
+        </article>
+        <article class="research-area research-area--reverse reveal" id="xai">
+          <figure class="research-area__img">
+            <img src="images/research/xai.svg" alt="Explainable AI: saliency map highlighting the evidence behind a model prediction" loading="lazy" />
+          </figure>
+          <div class="research-area__body">
+            <span class="research-area__num">04</span>
+            <h2 class="research-area__title">Explainable AI (XAI)</h2>
+            <p class="research-area__lead">Making medical AI transparent and trustworthy</p>
+            <p>For AI to be used in the clinic, its decisions must be understandable. We develop interpretable deep learning methods that reveal which image regions, genetic variants, or clinical features drive each prediction.</p>
+            <p>Explanations are also a path to discovery — they help us find and interpret biologically meaningful biomarkers.</p>
+            <ul class="research-area__topics">
+              <li>Interpretable deep learning</li>
+              <li>Saliency &amp; attribution maps</li>
+              <li>Feature importance for multimodal data</li>
+              <li>Biomarker interpretation</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <strong>Medical AI Lab.</strong>
+        <p>Laboratory of AI on Medical Applications<br />P.I. Prof. Ji Hye Won</p>
+      </div>
+      <ul class="footer__nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="member.html">Member</a></li>
+        <li><a href="publications.html">Publications</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer__bottom">
+      <div class="container">© <span id="year"></span> Medical AI Lab. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <button class="to-top" id="toTop" aria-label="맨 위로">↑</button>
+
+  <script src="js/brain.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
