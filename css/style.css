@@ -227,16 +227,16 @@ img { max-width: 100%; display: block; }
    SUB PAGE BANNER
    ========================================================= */
 .page-banner {
-  position: relative; height: 380px; overflow: hidden; cursor: grab;
-  background: radial-gradient(ellipse at 75% 55%, #0d2f5c 0%, #071a33 55%, #040d1c 100%);
+  position: relative; height: 380px; overflow: hidden;
+  background: var(--white); border-bottom: 1px solid var(--line);
 }
-.page-banner__content { position: relative; z-index: 2; height: 100%; display: flex; flex-direction: column; justify-content: center; color: var(--white); padding-top: calc(var(--header-h) - 10px); pointer-events: none; }
+.page-banner__content { position: relative; z-index: 2; height: 100%; display: flex; flex-direction: column; justify-content: center; color: var(--dark); padding-top: calc(var(--header-h) - 10px); pointer-events: none; }
 .page-banner__content a { pointer-events: auto; }
-.page-banner__crumb { font-family: var(--font-en); font-size: .82rem; letter-spacing: 1px; opacity: .75; margin-bottom: 10px; }
+.page-banner__crumb { font-family: var(--font-en); font-size: .82rem; letter-spacing: 1px; color: var(--muted); margin-bottom: 10px; }
 .page-banner__crumb a:hover { color: var(--accent); }
 .page-banner__crumb span { margin: 0 6px; opacity: .6; }
 .page-banner__title { font-family: var(--font-en); font-size: clamp(2.2rem, 5vw, 3.4rem); font-weight: 800; line-height: 1.1; }
-.page-banner__sub { margin-top: 10px; opacity: .85; }
+.page-banner__sub { margin-top: 10px; color: var(--dark); }
 
 /* =========================================================
    MEMBER
