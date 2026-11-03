@@ -43,8 +43,7 @@
           ${photoHTML(m, "m-card__img")}
         </div>
         <div class="m-card__body">
-          <span class="m-card__position">${esc(m.position)}</span>
-          <h3 class="m-card__name">${esc(m.nameEn)}<small>${esc(m.nameKo)}</small></h3>
+          <h3 class="m-card__name">${esc(m.nameEn)}</h3>
           ${m.department ? `<p class="m-card__dept">${esc(m.department.en)}</p>` : ""}
           ${m.interests && m.interests.length
             ? `<ul class="m-card__tags">${m.interests.map((t) => `<li>${esc(t)}</li>`).join("")}</ul>` : ""}
@@ -125,7 +124,6 @@
       <div class="md">
         <aside class="md__side">
           ${photoHTML(m, "md__img")}
-          <span class="md__position">${esc(m.position)}</span>
           <h2 class="md__name" id="modalName">${esc(m.nameEn)}</h2>
           <p class="md__name-ko">${esc(m.nameKo)}</p>
           ${m.department ? `<p class="md__dept">${esc(m.department.ko)}<br><span>${esc(m.department.en)}</span></p>` : ""}

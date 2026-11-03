@@ -269,9 +269,7 @@ img { max-width: 100%; display: block; }
 .m-card:hover .m-card__img { transform: scale(1.06); }
 .m-card__img--empty, .md__img--empty { display: grid; place-items: center; font-family: var(--font-en); font-weight: 800; font-size: 3rem; color: var(--white); background: linear-gradient(135deg, var(--primary), var(--accent)); }
 .m-card__body { padding: 20px 22px 18px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
-.m-card__position { font-family: var(--font-en); font-size: .72rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); }
 .m-card__name { font-family: var(--font-en); font-size: 1.2rem; font-weight: 700; color: var(--dark); line-height: 1.3; }
-.m-card__name small { margin-left: 8px; font-family: var(--font-ko); font-size: .9rem; font-weight: 500; color: var(--muted); }
 .m-card__dept { font-size: .85rem; color: var(--muted); }
 .m-card__tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
 .m-card__tags li { font-size: .74rem; padding: 3px 10px; border-radius: 0; background: var(--bg-soft); color: var(--primary); font-weight: 500; }
