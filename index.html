@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Medical AI Lab.</title>
+  <meta name="description" content="Medical AI Lab. — Laboratory of AI on medical applications (P.I. Prof. Ji Hye Won)" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ================= HEADER ================= -->
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a href="index.html" class="logo">
+        <img class="logo__img" data-img="logo" alt="Medical AI Lab logo" />
+        <span class="logo__text">
+          <strong>Medical AI Lab.</strong>
+          <small>Laboratory of AI on Medical Applications</small>
+        </span>
+      </a>
+
+      <nav class="nav" id="nav">
+        <ul class="nav__list">
+          <li><a href="index.html" class="nav__link is-active">HOME</a></li>
+          <li><a href="research.html" class="nav__link">RESEARCH</a></li>
+          <li class="nav__item--dropdown">
+            <a href="member.html" class="nav__link">MEMBER <span class="caret">▾</span></a>
+            <ul class="dropdown">
+              <li><a href="faculty.html">Faculty</a></li>
+              <li><a href="current.html">Current</a></li>
+            </ul>
+          </li>
+          <li><a href="publications.html" class="nav__link">PUBLICATIONS</a></li>
+          <li><a href="contact.html" class="nav__link">CONTACT</a></li>
+        </ul>
+      </nav>
+
+      <button class="hamburger" id="hamburger" aria-label="메뉴 열기">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ================= HERO SLIDER ================= -->
+  <section class="hero" id="hero">
+    <canvas class="hero__canvas" id="brainCanvas" aria-hidden="true"></canvas>
+    <div class="hero__overlay"></div>
+    <div class="hero__slides">
+      <div class="hero__slide is-active">
+        <div class="container hero__content">
+          <p class="hero__eyebrow">Medical AI Lab.</p>
+          <h1 class="hero__title">Virtual Doctor</h1>
+          <p class="hero__desc">Developing an AI framework that supports data analysis and decision-making.</p>
+          <a href="research.html" class="btn btn--light">Our Research</a>
+        </div>
+      </div>
+      <div class="hero__slide">
+        <div class="container hero__content">
+          <p class="hero__eyebrow">Research</p>
+          <h1 class="hero__title">Neuroimaging Genetics</h1>
+          <p class="hero__desc">Discovering biologically meaningful biomarkers by linking brain imaging and genomic data.</p>
+          <a href="research.html" class="btn btn--light">Learn More</a>
+        </div>
+      </div>
+      <div class="hero__slide">
+        <div class="container hero__content">
+          <p class="hero__eyebrow">Research</p>
+          <h1 class="hero__title">Machine Learning for Medical Data</h1>
+          <p class="hero__desc">Machine learning, deep learning and data integration for medical applications.</p>
+          <a href="research.html" class="btn btn--light">Learn More</a>
+        </div>
+      </div>
+    </div>
+
+    <button class="hero__arrow hero__arrow--prev" aria-label="이전 슬라이드">&#10094;</button>
+    <button class="hero__arrow hero__arrow--next" aria-label="다음 슬라이드">&#10095;</button>
+    <div class="hero__dots" id="heroDots"></div>
+  </section>
+
+  <main>
+    <!-- ================= NOTICE ================= -->
+    <section class="section notice reveal" id="notice">
+      <div class="container notice__grid">
+        <div class="notice__head">
+          <span class="section__label">NOTICE</span>
+          <h2 class="section__title">Welcome to<br />Medical AI Lab.</h2>
+        </div>
+        <div class="notice__body">
+          <p class="notice__lead">
+            Welcome to the Laboratory of AI on medical applications
+            <strong>(P.I. Prof. Ji Hye Won)</strong>.
+          </p>
+          <div class="recruit">
+            <span class="recruit__badge">Recruiting</span>
+            <p>
+              I am looking for <strong>postdocs, graduate and undergraduate students</strong>
+              interested in machine learning, imaging genetics, medical image computing,
+              bioinformatics, and biomedical data science.
+            </p>
+          </div>
+          <a href="contact.html" class="link-arrow">Contact us <span>→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= RESEARCH AREAS ================= -->
+    <section class="section research" id="research">
+      <div class="container">
+        <div class="section__header reveal">
+          <span class="section__label">RESEARCH</span>
+          <h2 class="section__title">Research Areas</h2>
+          <p class="section__sub">
+            My research goal is the development of AI framework, <em>"Virtual Doctor"</em>,
+            that supports data analysis and decision-making.
+          </p>
+        </div>
+
+        <div class="cards">
+          <article class="card reveal">
+            <div class="card__img" data-bg="virtualDoctor"><span class="card__num">01</span></div>
+            <div class="card__body">
+              <h3>Virtual Doctor</h3>
+              <p>An AI framework that supports data analysis and clinical decision-making — the main goal of our lab.</p>
+              <a href="research.html" class="link-arrow">Read more <span>→</span></a>
+            </div>
+          </article>
+          <article class="card reveal">
+            <div class="card__img" data-bg="neuroGenetics"><span class="card__num">02</span></div>
+            <div class="card__body">
+              <h3>Neuroimaging Genetics</h3>
+              <p>Machine learning and deep learning methods for analyzing bio-markers across data types, applied to medical imaging, imaging genetics and neuroinformatics.</p>
+              <a href="research.html" class="link-arrow">Read more <span>→</span></a>
+            </div>
+          </article>
+          <article class="card reveal">
+            <div class="card__img" data-bg="mlMedical"><span class="card__num">03</span></div>
+            <div class="card__body">
+              <h3>ML for Medical Data</h3>
+              <p>Applying machine learning to medical data, including data integration analysis that combines multiple data sources.</p>
+              <a href="research.html" class="link-arrow">Read more <span>→</span></a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= INTRO (KOREAN) ================= -->
+    <section class="section intro" id="intro">
+      <div class="container intro__grid">
+        <div class="intro__img reveal" data-bg="koreanIntro"></div>
+        <div class="intro__text reveal">
+          <span class="section__label">ABOUT</span>
+          <h2 class="section__title">데이터 분석과 의사결정을<br />지원하는 인공지능</h2>
+          <ul class="intro__list">
+            <li>
+              <span class="intro__icon">01</span>
+              <p>데이터 분석과 의사결정을 지원하는 인공지능, <strong>"가상 의사(Virtual Doctor)"</strong> 프레임워크를 개발하여 공학을 통해 미래 의료 산업을 선도하는 것을 목표로 합니다.</p>
+            </li>
+            <li>
+              <span class="intro__icon">02</span>
+              <p>뇌 영상과 유전체 정보와의 연관성을 분석하여 생물학적으로 의미 있는 바이오마커를 발굴하는 연구를 수행하고 있습니다.</p>
+            </li>
+            <li>
+              <span class="intro__icon">03</span>
+              <p>머신러닝, 딥러닝, 데이터사이언스, 통계 지식을 응용하여 바이오마커를 추출·해석하며, 딥러닝 기반 결측 데이터 보간(imputation)에도 관심을 두고 있습니다.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= INTERESTS ================= -->
+    <section class="section interests reveal" id="interests">
+      <div class="container">
+        <div class="section__header section__header--center">
+          <span class="section__label">SPECIALTY</span>
+          <h2 class="section__title">Research Fields of Interest</h2>
+        </div>
+        <ul class="tags">
+          <li>Imaging Genetics<br /><small>Association / Integration Analysis</small></li>
+          <li>Sparse Modeling</li>
+          <li>Feature Extraction</li>
+          <li>Biomedical Image Processing</li>
+          <li>Machine Learning Approaches</li>
+          <li>Bioinformatics</li>
+          <li>Interpretable Deep Learning</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ================= QUICK LINKS ================= -->
+    <section class="quick">
+      <div class="container quick__grid">
+        <a href="member.html" class="quick__item">
+          <span class="quick__label">MEMBER</span>
+          <span class="quick__title">Meet our people</span>
+          <span class="quick__arrow">→</span>
+        </a>
+        <a href="publications.html" class="quick__item">
+          <span class="quick__label">PUBLICATIONS</span>
+          <span class="quick__title">Browse our papers</span>
+          <span class="quick__arrow">→</span>
+        </a>
+        <a href="contact.html" class="quick__item">
+          <span class="quick__label">CONTACT</span>
+          <span class="quick__title">Join the lab</span>
+          <span class="quick__arrow">→</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <strong>Medical AI Lab.</strong>
+        <p>Laboratory of AI on Medical Applications<br />P.I. Prof. Ji Hye Won</p>
+      </div>
+      <ul class="footer__nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="member.html">Member</a></li>
+        <li><a href="publications.html">Publications</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer__bottom">
+      <div class="container">© <span id="year"></span> Medical AI Lab. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <button class="to-top" id="toTop" aria-label="맨 위로">↑</button>
+
+  <script src="js/brain.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
