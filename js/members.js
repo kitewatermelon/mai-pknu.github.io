@@ -85,6 +85,26 @@ const MEMBERS = [
     },
   },
 
+  {
+    id: "taeyeong-han",
+    group: "undergrad",
+    position: "Undergraduate Intern",
+    nameKo: "한태영",
+    nameEn: "Tae Yeong Han",
+    citeName: ["Tae Yeong Han"],
+    photo: "images/members/taeyeong-han.jpg",
+    department: {
+      ko: "컴퓨터공학과",
+      en: "Major of Computer Engineering",
+    },
+    interests: ["Medical Image Classification", "Class Imbalance Learning"],
+    email: ["hty@office.pknu.ac.kr"],
+    links: {},
+    awards: [],
+    journals: { SCIE: [], Scopus: [] },
+    conferences: { International: [], Domestic: [] },
+  },
+
   /* ---- 새 멤버 추가 예시 (복사해서 사용) ----
   {
     id: "gildong-hong",
