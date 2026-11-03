@@ -18,9 +18,11 @@ document.addEventListener("DOMContentLoaded", () => {
   loadImages();
   initHeader();
   initMobileMenu();
+  initSlider();
   initReveal();
   initToTop();
-  document.getElementById("year").textContent = new Date().getFullYear();
+  const year = document.getElementById("year");
+  if (year) year.textContent = new Date().getFullYear();
 });
 
 /* ---------- 이미지 로딩 (실패 시 그라데이션 대체) ---------- */
@@ -74,6 +76,57 @@ function initMobileMenu() {
   );
 }
 
+/* ---------- 히어로 슬라이더 ---------- */
+function initSlider() {
+  const slides = [...document.querySelectorAll(".hero__slide")];
+  const dotsWrap = document.getElementById("heroDots");
+  if (!slides.length || !dotsWrap) return; // 슬라이더가 없는 페이지
+  const INTERVAL = 6000;
+  let current = 0;
+  let timer;
+
+  const dots = slides.map((_, i) => {
+    const b = document.createElement("button");
+    b.setAttribute("aria-label", `${i + 1}번 슬라이드`);
+    b.addEventListener("click", () => go(i, true));
+    dotsWrap.appendChild(b);
+    return b;
+  });
+
+  function go(index, user = false) {
+    slides[current].classList.remove("is-active");
+    dots[current].classList.remove("is-active");
+    current = (index + slides.length) % slides.length;
+    // 애니메이션 재시작을 위해 reflow
+    void slides[current].offsetWidth;
+    slides[current].classList.add("is-active");
+    dots[current].classList.add("is-active");
+    if (user) restart();
+  }
+
+  function restart() {
+    clearInterval(timer);
+    timer = setInterval(() => go(current + 1), INTERVAL);
+  }
+
+  document.querySelector(".hero__arrow--prev").addEventListener("click", () => go(current - 1, true));
+  document.querySelector(".hero__arrow--next").addEventListener("click", () => go(current + 1, true));
+
+  // 터치 스와이프
+  let startX = null;
+  const hero = document.getElementById("hero");
+  hero.addEventListener("touchstart", (e) => (startX = e.touches[0].clientX), { passive: true });
+  hero.addEventListener("touchend", (e) => {
+    if (startX === null) return;
+    const dx = e.changedTouches[0].clientX - startX;
+    if (Math.abs(dx) > 50) go(current + (dx < 0 ? 1 : -1), true);
+    startX = null;
+  });
+
+  dots[0].classList.add("is-active");
+  restart();
+}
+
 /* ---------- 스크롤 등장 애니메이션 ---------- */
 function initReveal() {
   const els = document.querySelectorAll(".reveal");
@@ -90,7 +143,8 @@ function initReveal() {
         }
       });
     },
-    { threshold: 0.15 }
+    // 비율(threshold) 대신 여백 기준: 화면보다 긴 요소(교수 카드 등)도 윗부분이 보이면 바로 나타남
+    { threshold: 0, rootMargin: "0px 0px -60px 0px" }
   );
   els.forEach((el, i) => {
     if (el.classList.contains("card")) el.style.transitionDelay = `${(i % 3) * 0.12}s`;
