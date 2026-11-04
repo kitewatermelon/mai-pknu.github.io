@@ -169,7 +169,7 @@
   renderTabs();
   render();
 
-  // 주소로 바로 열기: member.html#yeonsu-park  /  그룹 이동: member.html#ms, #undergrad
+  // 주소로 바로 열기: member#yeonsu-park  /  그룹 이동: member#ms, #undergrad
   // #current 는 페이지 맨 위(탭)부터 그대로 보여줌. 그룹 이동은 애니메이션 없이 즉시.
   const hash = decodeURIComponent(location.hash.slice(1));
   if (hash && hash !== "current") {
