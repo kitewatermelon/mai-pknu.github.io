@@ -320,8 +320,8 @@ img { max-width: 100%; display: block; }
    FACULTY
    ========================================================= */
 .faculty { padding-top: 70px; }
-.faculty__card { grid-template-columns: 340px 1fr; border-radius: 14px; overflow: hidden; background: var(--white); box-shadow: 0 18px 50px rgba(11,26,44,.1); }
-.faculty__card .md__side { padding: 44px 34px; background: none; color: var(--text); }
+.faculty__card { grid-template-columns: 340px 1fr; background: none; }
+.faculty__card .md__side { padding: 44px 34px 44px 0; background: none; color: var(--text); }
 .faculty__card .md__img { box-shadow: 0 10px 24px rgba(11,26,44,.12); }
 .faculty__card .md__name { color: var(--dark); }
 .faculty__card .md__name-ko { color: var(--muted); opacity: 1; }
@@ -333,8 +333,7 @@ img { max-width: 100%; display: block; }
 .faculty__card .md__links a { border-color: var(--line); color: var(--primary); }
 .faculty__card .md__links a:hover { background: var(--bg-soft); border-color: var(--accent); }
 .faculty__img { aspect-ratio: 3 / 4; object-position: top; }
-.faculty__card .md__main { min-width: 0; padding: 50px 54px 46px; gap: 40px; }
-.faculty__lead { font-size: 1.15rem; font-weight: 600; color: var(--primary); margin-bottom: 14px; }
+.faculty__card .md__main { min-width: 0; padding: 50px 0 46px 54px; gap: 40px; }.faculty__lead { font-size: 1.15rem; font-weight: 600; color: var(--primary); margin-bottom: 14px; }
 .faculty__text { display: flex; flex-direction: column; gap: 10px; color: var(--text); font-size: .95rem; word-break: keep-all; }
 
 .timeline { list-style: none; position: relative; padding-left: 26px; display: flex; flex-direction: column; gap: 26px; }
@@ -366,9 +365,9 @@ img { max-width: 100%; display: block; }
 @media (max-width: 820px) {
   .faculty { padding-top: 40px; }
   .faculty__card { grid-template-columns: minmax(0, 1fr); }
-  .faculty__card .md__side { padding: 36px 24px 28px; }
+  .faculty__card .md__side { padding: 36px 0 28px; }
   .faculty__img { width: 200px; }
-  .faculty__card .md__main { padding: 32px 22px; }
+  .faculty__card .md__main { padding: 32px 0; }
   .faculty__contact { grid-template-columns: 1fr; gap: 2px; }
   .faculty__contact dd { margin-bottom: 10px; }
 }
