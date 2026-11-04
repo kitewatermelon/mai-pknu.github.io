@@ -14,15 +14,15 @@
   const SPEED = reduceMotion ? 0.6 : 1;
 
   const CFG = {
-    nodeCount: 520,        // 뇌 안의 뉴런 개수
+    nodeCount: 680,        // 뇌 안의 뉴런 개수
     bgCount: 70,           // 배경에 떠다니는 입자
     neighbors: 3,          // 각 뉴런이 연결되는 이웃 수
-    maxLinkDist: 0.32,     // 연결 최대 거리 (정규화 좌표)
+    maxLinkDist: 0.26,     // 연결 최대 거리 (짧게 해서 표면을 따라 이어지게)
     pulseRate: 0.25,       // 프레임당 새 신호 발생 확률 계수
     rotateSpeed: 0.0022,   // 회전 속도
-    colorNode: [17, 45, 78],
-    colorLink: [150, 158, 168],
-    colorPulse: [63, 114, 175],
+    colorNode: [20, 24, 32],
+    colorLink: [150, 152, 156],
+    colorPulse: [20, 24, 32],
   };
 
   let W, H, DPR, cx, cy, scale;
@@ -32,32 +32,56 @@
   const mouse = { x: -9999, y: -9999, inside: false, down: false, lastX: 0, moved: 0 };
   let ripples = [];                              // 클릭 시 퍼지는 원
 
-  /* ---------- 뇌 모양 판정 (옆에서 본 뇌, x: 앞(-)~뒤(+), y: 위(-)~아래(+), z: 좌우) ---------- */
-  function insideBrain(x, y, z) {
-    // 대뇌: 큰 타원체 (좌우 반구 사이에 얕은 홈)
-    const cerebrum = (x * x) / (1.0 * 1.0) + ((y + 0.08) ** 2) / (0.68 * 0.68) + (z * z) / (0.78 * 0.78);
-    const fissure = Math.abs(z) < 0.035 && y < -0.2; // 대뇌 종렬
-    // 측두엽 아래로 살짝 볼록
-    const temporal = ((x + 0.15) ** 2) / (0.55 * 0.55) + ((y - 0.28) ** 2) / (0.3 * 0.3) + (z * z) / (0.75 * 0.75);
-    // 소뇌: 뒤쪽 아래
-    const cerebellum = ((x - 0.55) ** 2) / (0.36 * 0.36) + ((y - 0.5) ** 2) / (0.22 * 0.22) + (z * z) / (0.55 * 0.55);
-    // 뇌간
-    const stem = ((x - 0.2) ** 2) / (0.12 * 0.12) + (z * z) / (0.12 * 0.12);
-    const inStem = stem < 1 && y > 0.3 && y < 0.95;
-    return ((cerebrum < 1 || temporal < 1) && !fissure && y < 0.55) || cerebellum < 1 || inStem;
+  /* ---------- 뇌 모양 (옆에서 본 뇌, x: 앞(-)~뒤(+), y: 위(-)~아래(+), z: 좌우) ---------- */
+  // 타원체 값: 1보다 작으면 안쪽, 1에 가까울수록 표면
+  const ell = (x, y, z, cx, cy, cz, rx, ry, rz) =>
+    ((x - cx) / rx) ** 2 + ((y - cy) / ry) ** 2 + ((z - cz) / rz) ** 2;
+
+  // 점이 어느 부위에 속하는지와 표면까지의 정도(v)를 돌려줌
+  function brainField(x, y, z) {
+    // 대뇌: 하나로 이어진 타원체 (좌우 반구 구분 없음)
+    let cer = y < 0.42 ? ell(x, y, z, 0, -0.08, 0, x < 0 ? 0.95 : 1.02, 0.64, 0.78) : 99;
+    for (const s of [-1, 1]) {
+      // 측두엽: 옆 아래로 볼록
+      cer = Math.min(cer, ell(x, y, z, -0.15, 0.24, s * 0.4, 0.55, 0.27, 0.34));
+    }
+    // 실비우스 열: 옆면에서 측두엽과 전두엽을 나누는 비스듬한 홈
+    if (cer < 1 && Math.abs(z) > 0.28 && x > -0.62 && x < 0.15 &&
+        Math.abs(y - (0.18 - 0.25 * (x + 0.6))) < 0.035) cer = 99;
+
+    const cbl = ell(x, y, z, 0.56, 0.5, 0, 0.32, 0.2, 0.5); // 소뇌도 하나로
+
+    const sx = 0.2 + (y - 0.3) * 0.15; // 뇌간은 살짝 뒤로 기울어짐
+    const stem = y > 0.3 && y < 0.95 ? ell(x, 0, z, sx, 0, 0, 0.11, 1, 0.11) : 99;
+
+    if (cer < 1) return { part: "cerebrum", v: cer };
+    if (cbl < 1) return { part: "cerebellum", v: cbl };
+    if (stem < 1) return { part: "stem", v: stem };
+    return null;
+  }
+
+  // 표면 위주로 점을 남겨 윤곽과 주름이 보이게 함
+  function acceptPoint(x, y, z) {
+    const f = brainField(x, y, z);
+    if (!f) return false;
+    if (f.part === "stem") return Math.random() < 0.5;
+    if (f.v < 0.7) return Math.random() < 0.04; // 안쪽은 아주 드물게
+    if (f.part === "cerebellum") return Math.sin(y * 60) > -0.2; // 소뇌의 가로 주름
+    // 대뇌 주름(뇌회): 구불구불한 선 위에 점이 모이도록
+    const n = Math.sin(7 * x + 2.1 * Math.sin(5 * z)) +
+              Math.sin(8 * y + 1.7 * Math.sin(6 * x)) +
+              Math.sin(7 * z + 1.3 * Math.sin(7 * y));
+    return Math.abs(n) < 0.55 || Math.random() < 0.22;
   }
 
   function makeBrain() {
     nodes = [];
     let guard = 0;
-    while (nodes.length < CFG.nodeCount && guard++ < 200000) {
+    while (nodes.length < CFG.nodeCount && guard++ < 400000) {
       const x = Math.random() * 2.2 - 1.1;
       const y = Math.random() * 2.0 - 0.8;
       const z = Math.random() * 1.8 - 0.9;
-      if (!insideBrain(x, y, z)) continue;
-      // 표면(피질) 쪽에 더 많이 분포시키기: 바깥쪽 점을 우대
-      const r = Math.sqrt(x * x / 1.0 + (y + 0.08) ** 2 / 0.46 + z * z / 0.6);
-      if (r < 0.75 && Math.random() < 0.6) continue;
+      if (!acceptPoint(x, y, z)) continue;
       nodes.push({
         x, y, z,
         ox: x, oy: y, oz: z,
@@ -121,7 +145,8 @@
     }
     cx = mobile ? W * 0.5 : W * 0.68;
     cy = mobile ? H * 0.27 : H * 0.5;
-    scale = mobile ? Math.min(W, H) * 0.36 : Math.min(W * 0.3, H * 0.42);
+    // 뇌 크기 (숫자를 줄이면 작아짐)
+    scale = mobile ? Math.min(W, H) * 0.3 : Math.min(W * 0.25, H * 0.35);
     makeBackground();
   }
 
@@ -168,14 +193,14 @@
       s.x += s.vx; s.y += s.vy;
       if (s.x < 0) s.x = W; if (s.x > W) s.x = 0;
       if (s.y < 0) s.y = H; if (s.y > H) s.y = 0;
-      ctx.fillStyle = `rgba(17,45,78,${s.a * 0.35})`;
+      ctx.fillStyle = `rgba(20,24,32,${s.a * 0.35})`;
       ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2); ctx.fill();
     }
 
     // 뇌 주변 은은한 빛
     const halo = ctx.createRadialGradient(cx, cy, scale * 0.1, cx, cy, scale * 1.3);
-    halo.addColorStop(0, "rgba(17,45,78,0.04)");
-    halo.addColorStop(1, "rgba(17,45,78,0)");
+    halo.addColorStop(0, "rgba(20,24,32,0.04)");
+    halo.addColorStop(1, "rgba(20,24,32,0)");
     ctx.fillStyle = halo;
     ctx.fillRect(0, 0, W, H);
 
@@ -193,14 +218,15 @@
     const [nr, ng, nb] = CFG.colorNode;
     for (const n of nodes) {
       n.glow *= 0.94;
-      const r = (0.7 + n.depth * 1.6) * n.p + n.glow * 2.5;
+      // 점 크기: 기본은 작게, 건드렸을 때(glow)도 조금만 커지게
+      const r = (0.45 + n.depth * 1.0) * n.p + n.glow * 0.8;
       const a = 0.25 + n.depth * 0.65 + n.glow * 0.5;
       if (n.glow > 0.05) {
-        const g = ctx.createRadialGradient(n.sx, n.sy, 0, n.sx, n.sy, r * 5);
-        g.addColorStop(0, `rgba(63,114,175,${0.5 * n.glow})`);
-        g.addColorStop(1, "rgba(63,114,175,0)");
+        const g = ctx.createRadialGradient(n.sx, n.sy, 0, n.sx, n.sy, r * 3.5);
+        g.addColorStop(0, `rgba(20,24,32,${0.4 * n.glow})`);
+        g.addColorStop(1, "rgba(20,24,32,0)");
         ctx.fillStyle = g;
-        ctx.beginPath(); ctx.arc(n.sx, n.sy, r * 5, 0, Math.PI * 2); ctx.fill();
+        ctx.beginPath(); ctx.arc(n.sx, n.sy, r * 3.5, 0, Math.PI * 2); ctx.fill();
       }
       ctx.fillStyle = `rgba(${nr},${ng},${nb},${Math.min(a, 1)})`;
       ctx.beginPath(); ctx.arc(n.sx, n.sy, r, 0, Math.PI * 2); ctx.fill();
@@ -212,14 +238,14 @@
       for (const n of nodes) {
         const d = Math.hypot(n.sx - mouse.x, n.sy - mouse.y);
         if (d < R) {
-          ctx.strokeStyle = `rgba(17,45,78,${(1 - d / R) * 0.3})`;
+          ctx.strokeStyle = `rgba(20,24,32,${(1 - d / R) * 0.3})`;
           ctx.lineWidth = 0.8;
           ctx.beginPath(); ctx.moveTo(mouse.x, mouse.y); ctx.lineTo(n.sx, n.sy); ctx.stroke();
         }
       }
       const cg = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 40);
-      cg.addColorStop(0, "rgba(63,114,175,0.35)");
-      cg.addColorStop(1, "rgba(63,114,175,0)");
+      cg.addColorStop(0, "rgba(20,24,32,0.25)");
+      cg.addColorStop(1, "rgba(20,24,32,0)");
       ctx.fillStyle = cg;
       ctx.beginPath(); ctx.arc(mouse.x, mouse.y, 40, 0, Math.PI * 2); ctx.fill();
     }
@@ -229,7 +255,7 @@
       const r = ripples[i];
       r.r += 6; r.a *= 0.94;
       if (r.a < 0.02) { ripples.splice(i, 1); continue; }
-      ctx.strokeStyle = `rgba(63,114,175,${r.a})`;
+      ctx.strokeStyle = `rgba(20,24,32,${r.a})`;
       ctx.lineWidth = 2;
       if (r.r > 0) { ctx.beginPath(); ctx.arc(r.x, r.y, r.r, 0, Math.PI * 2); ctx.stroke(); }
     }
@@ -262,7 +288,7 @@
       ctx.lineWidth = 1.4;
       ctx.beginPath(); ctx.moveTo(tx, ty); ctx.lineTo(x, y); ctx.stroke();
       ctx.fillStyle = `rgba(${pr},${pg},${pb},${0.6 + d * 0.4})`;
-      ctx.beginPath(); ctx.arc(x, y, 1.3 + d * 1.2, 0, Math.PI * 2); ctx.fill();
+      ctx.beginPath(); ctx.arc(x, y, 0.9 + d * 0.7, 0, Math.PI * 2); ctx.fill();
     }
   }
 
