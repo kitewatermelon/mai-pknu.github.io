@@ -34,7 +34,6 @@ img { max-width: 100%; display: block; }
   transition: background .3s, height .3s, box-shadow .3s;
 }
 .header.is-scrolled {
-  height: 68px;
   background: rgba(255,255,255,.97);
   box-shadow: 0 2px 16px rgba(0,0,0,.08);
 }
@@ -230,7 +229,7 @@ img { max-width: 100%; display: block; }
 /* =========================================================
    MEMBER
    ========================================================= */
-.member-tabs-wrap { position: sticky; top: 68px; z-index: 50; background: rgba(255,255,255,.96); border-bottom: 1px solid var(--line); backdrop-filter: blur(6px); }
+.member-tabs-wrap { position: sticky; top: var(--header-h); z-index: 50; background: rgba(255,255,255,.96); border-bottom: 1px solid var(--line); backdrop-filter: blur(6px); }
 .member-tabs { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; }
 .member-tabs::-webkit-scrollbar { display: none; }
 .member-tabs button {
