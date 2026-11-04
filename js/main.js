@@ -7,7 +7,6 @@
    이미지를 내려받아 images/ 폴더에 넣고 아래 경로를 바꾸는 것을 권장합니다.
    (예: logo: "images/logo.png") */
 const IMAGES = {
-  logo: "https://sites.google.com/sitesv-images-rt/AMxu72t1qvmngYsmPePYC0-z_50tZ6-6O6jWjJHh6bTZ_sCBSfjqRwhtETLDN6KVsSAOopTC-ZHoYwNC0MHunj2ShhBO4TF8wF3DXtE3dJlR423HMXjMkfbZMi4phSb4DySTI4-ZUmE6Xa1ewBl8cLWmdfBYwVbCQl7qkUPRmqBaSgiM_jVs9gLqzPpKo9gj=w400",
   virtualDoctor: "https://sites.google.com/sitesv-images-rt/AMxu72upVFDOJUaMFJvXTiDNawXt659c44BCBUt0qCVGVR1Fo3FExn420m95GmqzQQYUA8XjxNXacDlK1DYtKf0OHgjkPUaSwiMI7AyqE4i1RU2yKeUYQurmDoh0k9PPnWeJpmhPPEo2FrzpsIBFXeS59NrnrCsbyNnCw0D3TfzRBiD4p2B2qentfGstHO48g8Wnu6lsUNqpeeSnv4f28KIWDOxxWqYSbatfQL9yj-PbtlQ=w1280",
   neuroGenetics: "https://sites.google.com/sitesv-images-rt/AMxu72s2TXtX8xNlV_vJAlQSX_XTxttkBmQMhkGlyAjGxheFBLWtI4bX0R5kVFyl9GRgoc0vljN6gO4ZNpWb8puUIGuBNsi-ev1Faq9-NI5fcqdUlLf_aTEo1UaE9Sy9jnGqQXmPOuy2xAjeIRen71qrcAaKfMZFjpZLfpy0mwofkIuxfaNf3a2_BRitXHRLPLhclI3LhfjQkzQhxlUhvK_MLDsDA2iyHf-p6hIpXYPB1Gw=w1280",
   mlMedical: "https://sites.google.com/sitesv-images-rt/AMxu72tgVhb4zx3tssPQFCKX6QUadd96wssafx7AzufK7m6UdYNFiIAHjVMo0cN4vRqztEgy7O-JhlMTcXT79g5rG-t3d_37nY61ASiuVBwRZP3YNxQ0gWFkBV-1CPeIzjmG2dp64YXQppUAm0RkERVWFdHOiMCxjXabLz7XeO3CKj4ewQilLiE37Eqz4SicsuycqfO5Jp2KQOjg0CpnxpT9YUa90KfF3TKAuQPuSUO7e_4=w1280",
