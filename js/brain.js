@@ -20,9 +20,9 @@
     maxLinkDist: 0.32,     // 연결 최대 거리 (정규화 좌표)
     pulseRate: 0.25,       // 프레임당 새 신호 발생 확률 계수
     rotateSpeed: 0.0022,   // 회전 속도
-    colorNode: [11, 26, 44],
+    colorNode: [17, 45, 78],
     colorLink: [150, 158, 168],
-    colorPulse: [25, 167, 206],
+    colorPulse: [63, 114, 175],
   };
 
   let W, H, DPR, cx, cy, scale;
@@ -168,14 +168,14 @@
       s.x += s.vx; s.y += s.vy;
       if (s.x < 0) s.x = W; if (s.x > W) s.x = 0;
       if (s.y < 0) s.y = H; if (s.y > H) s.y = 0;
-      ctx.fillStyle = `rgba(11,26,44,${s.a * 0.35})`;
+      ctx.fillStyle = `rgba(17,45,78,${s.a * 0.35})`;
       ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2); ctx.fill();
     }
 
     // 뇌 주변 은은한 빛
     const halo = ctx.createRadialGradient(cx, cy, scale * 0.1, cx, cy, scale * 1.3);
-    halo.addColorStop(0, "rgba(11,26,44,0.04)");
-    halo.addColorStop(1, "rgba(11,26,44,0)");
+    halo.addColorStop(0, "rgba(17,45,78,0.04)");
+    halo.addColorStop(1, "rgba(17,45,78,0)");
     ctx.fillStyle = halo;
     ctx.fillRect(0, 0, W, H);
 
@@ -197,8 +197,8 @@
       const a = 0.25 + n.depth * 0.65 + n.glow * 0.5;
       if (n.glow > 0.05) {
         const g = ctx.createRadialGradient(n.sx, n.sy, 0, n.sx, n.sy, r * 5);
-        g.addColorStop(0, `rgba(25,167,206,${0.5 * n.glow})`);
-        g.addColorStop(1, "rgba(25,167,206,0)");
+        g.addColorStop(0, `rgba(63,114,175,${0.5 * n.glow})`);
+        g.addColorStop(1, "rgba(63,114,175,0)");
         ctx.fillStyle = g;
         ctx.beginPath(); ctx.arc(n.sx, n.sy, r * 5, 0, Math.PI * 2); ctx.fill();
       }
@@ -212,14 +212,14 @@
       for (const n of nodes) {
         const d = Math.hypot(n.sx - mouse.x, n.sy - mouse.y);
         if (d < R) {
-          ctx.strokeStyle = `rgba(11,26,44,${(1 - d / R) * 0.3})`;
+          ctx.strokeStyle = `rgba(17,45,78,${(1 - d / R) * 0.3})`;
           ctx.lineWidth = 0.8;
           ctx.beginPath(); ctx.moveTo(mouse.x, mouse.y); ctx.lineTo(n.sx, n.sy); ctx.stroke();
         }
       }
       const cg = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 40);
-      cg.addColorStop(0, "rgba(25,167,206,0.35)");
-      cg.addColorStop(1, "rgba(25,167,206,0)");
+      cg.addColorStop(0, "rgba(63,114,175,0.35)");
+      cg.addColorStop(1, "rgba(63,114,175,0)");
       ctx.fillStyle = cg;
       ctx.beginPath(); ctx.arc(mouse.x, mouse.y, 40, 0, Math.PI * 2); ctx.fill();
     }
@@ -229,7 +229,7 @@
       const r = ripples[i];
       r.r += 6; r.a *= 0.94;
       if (r.a < 0.02) { ripples.splice(i, 1); continue; }
-      ctx.strokeStyle = `rgba(25,167,206,${r.a})`;
+      ctx.strokeStyle = `rgba(63,114,175,${r.a})`;
       ctx.lineWidth = 2;
       if (r.r > 0) { ctx.beginPath(); ctx.arc(r.x, r.y, r.r, 0, Math.PI * 2); ctx.stroke(); }
     }
