@@ -394,14 +394,13 @@ img { max-width: 100%; display: block; }
 /* =========================================================
    RESEARCH
    ========================================================= */
-.research-intro { padding-bottom: 40px; }
-.research-intro .section__header { margin-bottom: 0; }
 
 .research-areas { padding-top: 40px; }
 .research-area { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 64px; align-items: center; padding: 60px 0; border-top: 1px solid var(--line); scroll-margin-top: 80px; }
 .research-area:first-child { border-top: 0; padding-top: 0; }
+.research-area:first-child { border-top: 0; padding-top: 0; }
 .research-area--reverse .research-area__img { order: 2; }
-.research-area__img { border-radius: 14px; overflow: hidden; background: var(--white); border: 1px solid var(--line); box-shadow: 0 18px 50px rgba(11,26,44,.08); }
+.research-area__img { border-radius: 0; overflow: hidden; background: var(--white); border: 1px solid var(--line); }
 .research-area__img img { width: 100%; aspect-ratio: 16 / 9; object-fit: contain; background: #fff; }
 .research-area__num { font-family: var(--font-en); font-size: 3rem; font-weight: 800; line-height: 1; color: var(--accent); opacity: .35; }
 .research-area__title { margin-top: 6px; font-family: var(--font-en); font-size: clamp(1.5rem, 2.6vw, 2rem); font-weight: 700; color: var(--dark); line-height: 1.25; }
