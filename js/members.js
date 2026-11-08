@@ -10,7 +10,7 @@ const MEMBER_GROUPS = [
   { key: "faculty",   title: "Faculty",               ko: "지도교수" },
   { key: "phd",       title: "Ph.D. Students",        ko: "박사과정" },
   { key: "ms",        title: "M.S. Students",         ko: "석사과정" },
-  { key: "undergrad", title: "Undergraduate Interns", ko: "학부연구생" },
+  { key: "undergrad", title: "Undergraduate Students", ko: "학부연구생" },
   { key: "alumni",    title: "Alumni",                ko: "졸업생" },
 ];
 
@@ -108,7 +108,7 @@ const MEMBERS = [
   {
     id: "hyunju-park",
     group: "undergrad",
-    position: "Undergraduate Intern",
+    position: "Undergraduate Student",
     nameKo: "박현주",
     nameEn: "Hyun Ju Park",
     citeName: ["Hyun Ju Park"],
@@ -128,16 +128,16 @@ const MEMBERS = [
   {
     id: "jeyi-park",
     group: "undergrad",
-    position: "Undergraduate Intern",
+    position: "Undergraduate Student",
     nameKo: "박제이",
     nameEn: "Je Yi Park",
     citeName: ["Je Yi Park"],
-    photo: "images/members/je%20yi%20park.jpg",
+    photo: "images/members/jeyi-park.jpg",
     department: {
       ko: "컴퓨터공학과",
       en: "Major of Computer Engineering",
     },
-    interests: ["Segmentation", "Domain Shift"],
+    interests: ["Medical Image Segmentation", "Domain Shift"],
     email: ["jei3211@office.pknu.ac.kr"],
     links: {},
     awards: [],
@@ -148,16 +148,16 @@ const MEMBERS = [
   {
     id: "sunghyun-kwon",
     group: "undergrad",
-    position: "Undergraduate Intern",
+    position: "Undergraduate Student",
     nameKo: "권성현",
     nameEn: "Sung Hyun Kwon",
     citeName: ["Sung Hyun Kwon"],
-    photo: "",
+    photo: "images/members/sunghyun-kwon.jpg",
     department: {
       ko: "컴퓨터공학과",
       en: "Major of Computer Engineering",
     },
-    interests: [],
+    interests: ["Medical Image Classification"],
     email: ["jake9951@office.pknu.ac.kr"],
     links: {},
     awards: [],
@@ -168,7 +168,7 @@ const MEMBERS = [
   {
     id: "taeyeong-han",
     group: "undergrad",
-    position: "Undergraduate Intern",
+    position: "Undergraduate Student",
     nameKo: "한태영",
     nameEn: "Tae Yeong Han",
     citeName: ["Tae Yeong Han"],
@@ -188,7 +188,7 @@ const MEMBERS = [
   {
     id: "yejeong-sim",
     group: "undergrad",
-    position: "Undergraduate Intern",
+    position: "Undergraduate Student",
     nameKo: "심예정",
     nameEn: "Ye Jeong Sim",
     citeName: ["Ye Jeong Sim"],
