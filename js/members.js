@@ -92,7 +92,7 @@ const MEMBERS = [
     nameKo: "최지인",
     nameEn: "Ji In Choi",
     citeName: ["Ji In Choi"],
-    photo: "images/members/ji-in%20choi.webp",
+    photo: "images/members/jiin-choi.webp",
     department: {
       ko: "데이터공학과",
       en: "Department of Data Engineering",
