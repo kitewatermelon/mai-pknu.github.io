@@ -29,10 +29,16 @@ const MEMBERS = [
     },
     interests: ["Medical Foundation Model", "Generative AI", "XAI"],
     email: ["202130422@office.pknu.ac.kr", "parkite576@gmail.com"],
-    links: {},   // 예: { github: "https://github.com/...", scholar: "https://scholar.google.com/..." }
+    links: {   // 키가 버튼 이름으로 표시됨
+      "💻 GitHub": "https://github.com/kitewatermelon",
+      "🌐 GitHub Pages": "https://kitewatermelon.github.io/",
+      "💼 LinkedIn": "https://www.linkedin.com/in/yeon-su-park-a233a1341/",
+    },
 
     awards: [
-      { title: "석사우수장학금 (이공계)", year: "" },
+      { title: "Best Poster Presentation Award, APCMBE Fall, Daegu, Korea", year: "2026" },
+      { title: "Science and Engineering Master’s Excellence Scholarship, Ministry of Science and ICT (MSIT) & Korea Student Aid Foundation (KOSAF)", year: "2026" },
+      { title: "Capstone Design Competition – Bronze Award, Busan, Korea", year: "2025" },
     ],
 
     journals: {
@@ -63,7 +69,7 @@ const MEMBERS = [
           title: "Probing Self-Supervised Chest Radiograph Representations via a Representation Conditional Diffusion Model",
           venue: "APCMBE Fall, Daegu, Korea",
           year: 2026,
-          note: "Poster",
+          note: "Poster · 🏆 Best Poster Presentation Award",
         },
       ],
       Domestic: [
