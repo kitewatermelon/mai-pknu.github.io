@@ -22,7 +22,7 @@ const MEMBERS = [
     nameKo: "박연수",
     nameEn: "Yeon Su Park",
     citeName: ["Yeon Su Park", "Park, Yeon Su"],   // 논문 저자 표기 (굵게 표시용)
-    photo: "images/members/yeonsu-park.jpg",
+    photo: "images/members/yeonsu-park.webp",
     department: {
       ko: "데이터공학과",
       en: "Department of Data Engineering",
@@ -92,7 +92,7 @@ const MEMBERS = [
     nameKo: "최지인",
     nameEn: "Ji In Choi",
     citeName: ["Ji In Choi"],
-    photo: "images/members/ji-in%20choi.jpg",
+    photo: "images/members/ji-in%20choi.webp",
     department: {
       ko: "데이터공학과",
       en: "Department of Data Engineering",
@@ -112,7 +112,7 @@ const MEMBERS = [
     nameKo: "박현주",
     nameEn: "Hyun Ju Park",
     citeName: ["Hyun Ju Park"],
-    photo: "images/members/hyunju-park.jpg",
+    photo: "images/members/hyunju-park.webp",
     department: {
       ko: "컴퓨터공학과",
       en: "Major of Computer Engineering",
@@ -132,7 +132,7 @@ const MEMBERS = [
     nameKo: "박제이",
     nameEn: "Je Yi Park",
     citeName: ["Je Yi Park"],
-    photo: "images/members/jeyi-park.jpg",
+    photo: "images/members/jeyi-park.webp",
     department: {
       ko: "컴퓨터공학과",
       en: "Major of Computer Engineering",
@@ -152,7 +152,7 @@ const MEMBERS = [
     nameKo: "권성현",
     nameEn: "Sung Hyun Kwon",
     citeName: ["Sung Hyun Kwon"],
-    photo: "images/members/sunghyun-kwon.jpg",
+    photo: "images/members/sunghyun-kwon.webp",
     department: {
       ko: "컴퓨터공학과",
       en: "Major of Computer Engineering",
@@ -172,7 +172,7 @@ const MEMBERS = [
     nameKo: "한태영",
     nameEn: "Tae Yeong Han",
     citeName: ["Tae Yeong Han"],
-    photo: "images/members/taeyeong-han.jpg",
+    photo: "images/members/taeyeong-han.webp",
     department: {
       ko: "컴퓨터공학과",
       en: "Major of Computer Engineering",
@@ -192,7 +192,7 @@ const MEMBERS = [
     nameKo: "심예정",
     nameEn: "Ye Jeong Sim",
     citeName: ["Ye Jeong Sim"],
-    photo: "images/members/yejeong-sim.jpg",
+    photo: "images/members/yejeong-sim.webp",
     department: {
       ko: "컴퓨터공학과",
       en: "Major of Computer Engineering",
@@ -213,7 +213,7 @@ const MEMBERS = [
     nameKo: "홍길동",
     nameEn: "Gil Dong Hong",
     citeName: ["Gil Dong Hong"],
-    photo: "images/members/gildong-hong.jpg",
+    photo: "images/members/gildong-hong.webp",
     department: { ko: "데이터공학과", en: "Department of Data Engineering" },
     interests: [],
     email: [],
